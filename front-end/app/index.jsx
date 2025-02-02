@@ -28,7 +28,7 @@ export default function index() {
                 </Pressable>
               </Link>
 
-              <Link href="/" asChild className="">
+              <Link href="/SignUp" asChild className="">
                 <Pressable className="px-12 py-3 ">
                   <Text className="text-black text-lg">Register</Text>
                 </Pressable>
