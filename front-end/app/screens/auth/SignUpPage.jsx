@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "./../firebase";
+import { auth, db } from "../../services/firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Link } from "expo-router";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
-export default function SignUp() {
+export default function SignUpPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,7 +108,7 @@ export default function SignUp() {
             Sign Up
           </Text>
         </Pressable>
-        <Link href="/Login">
+        <Link href="./LoginPage">
           <Text className="text-center">Already Have an account</Text>
         </Link>
       </View>

@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
-import MainPageImage from "../assets/svgs/MainPageImage";
+import MainPageImage from "./components/svg/MainPageImage";
 
 export default function index() {
   return (
@@ -22,13 +22,13 @@ export default function index() {
           </View>
           <View className="">
             <View className="flex flex-row justify-around items-center ">
-              <Link href="/Login  " asChild className="">
+              <Link href="/screens/auth/LoginPage" asChild className="">
                 <Pressable className="px-12 py-3 shadow-md  bg-[#1F41BB] rounded-md ">
                   <Text className=" text-white text-lg">Login</Text>
                 </Pressable>
               </Link>
 
-              <Link href="/SignUp" asChild className="">
+              <Link href="/screens/auth/SignUpPage" asChild className="">
                 <Pressable className="px-12 py-3 ">
                   <Text className="text-black text-lg">Register</Text>
                 </Pressable>
