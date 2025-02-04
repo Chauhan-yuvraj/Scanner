@@ -1,13 +1,13 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase/firebase";
 
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
 import { Link } from "expo-router";
 import { AntDesign, Entypo } from "@expo/vector-icons";
+import { Button } from "../../components/common/Button";
 
 export default function LoginPage() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,7 +24,6 @@ export default function LoginPage() {
         "Error",
         "Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number, and one special character."
       );
-
       return false;
     }
     return true;
@@ -42,54 +41,65 @@ export default function LoginPage() {
   };
 
   return (
-    <View className="h-screen  border  flex flex-col justify-around ">
-      <View className="flex flex-col items-center gap-2 ">
-        <Text className="text-[#1F41BB] text-3xl font-bold ">Login here</Text>
-        <Text className="font-bold text-lg">
-          Welcome back you've been missed!
+    <View className="flex-1 bg-white px-6 py-8 justify-between">
+      {/* Header Section */}
+      <View className="space-y-4">
+        <Text className="text-[#1F41BB] text-3xl font-bold text-center">
+          Login here
+        </Text>
+        <Text className="font-semibold text-lg text-gray-700 text-center">
+          Welcome back! You've been missed!
         </Text>
       </View>
-      <View className="flex gap-4 first-letter px-5">
+
+      {/* Input Fields */}
+      <View className="space-y-4">
         <TextInput
           placeholder="Email"
-          className="border border-[#1F41BB] bg-[#F1F4FF] text-lg rounded-md px-2"
+          className="border border-[#1F41BB] bg-[#F1F4FF] text-lg rounded-md px-4 py-3"
           value={email}
           keyboardType="email-address"
           onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           placeholder="Password"
-          className="border border-[#1F41BB] bg-[#F1F4FF] text-lg rounded-md px-2 "
+          secureTextEntry
+          className="border border-[#1F41BB] bg-[#F1F4FF] text-lg rounded-md px-4 py-3"
           value={password}
           onChangeText={(text) => setPassword(text)}
         />
-        <Text className=" text-right text-[#1F41BB]">
-          Forget your password?
+        <Text className="text-right text-[#1F41BB] text-base font-medium">
+          Forgot your password?
         </Text>
-        <Pressable
-          className="bg-[#1F41BB] py-4 rounded-md"
-          onPress={handleLogin}
-        >
-          <Text className="text-center text-white text-lg font-bold">
-            Sign in
-          </Text>
-        </Pressable>
-        <Link href="./SignUpPage">
-          <Text className="text-center">Create new account</Text>
-        </Link>
       </View>
-      <View className="flex flex-col items-center">
-        <Text className="text-[#1F41BB] text-lg py-4 ">Or Continue with</Text>
-        <View className="flex flex-row justify-center gap-4 ">
-          <View className="p-2 bg-[#ECECEC] rounded-md">
+      <View>
+        {/* Login Button */}
+        <Button onpress={handleLogin} text="Sign in" />
+
+        {/* Create Account Link */}
+        <View className="items-center pt-2">
+          <Link href="./SignUpPage" asChild>
+            <Pressable>
+              <Text className=" ">Create new account</Text>
+            </Pressable>
+          </Link>
+        </View>
+      </View>
+      {/* Social Login Options */}
+      <View className="space-y-4 pb-8">
+        <Text className="text-[#1F41BB] text-lg font-medium text-center">
+          Or Continue with
+        </Text>
+        <View className="flex-row justify-center gap-4">
+          <Pressable className="p-3 bg-[#ECECEC] rounded-md">
             <AntDesign name="google" size={24} color="black" />
-          </View>
-          <View className="p-2 bg-[#ECECEC] rounded-md">
+          </Pressable>
+          <Pressable className="p-3 bg-[#ECECEC] rounded-md">
             <AntDesign name="facebook-square" size={24} color="black" />
-          </View>
-          <View className="p-2 bg-[#ECECEC] rounded-md">
+          </Pressable>
+          <Pressable className="p-3 bg-[#ECECEC] rounded-md">
             <Entypo name="mail" size={24} color="black" />
-          </View>
+          </Pressable>
         </View>
       </View>
     </View>
