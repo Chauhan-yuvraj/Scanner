@@ -4,7 +4,6 @@ import { Link } from "expo-router";
 import MainPageImage from "./components/svg/MainPageImage";
 import { Button } from "./components/common/Button";
 
-
 export default function index() {
   return (
     <>
@@ -30,9 +29,9 @@ export default function index() {
                 </Pressable>
               </Link> */}
 
-              <Button link="/screens/auth/LoginPage" text="Login" />
+              <Button link="/login" text="Login" />
 
-              <Link href="/screens/auth/SignUpPage" asChild className="">
+              <Link href="/SignUpPage" asChild className="">
                 <Pressable className="px-12 py-3 ">
                   <Text className="text-black text-lg">Register</Text>
                 </Pressable>

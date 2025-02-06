@@ -1,11 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebase/firebase";
+import { auth } from "../services/firebase/firebase";
 
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { AntDesign, Entypo } from "@expo/vector-icons";
-import { Button } from "../../components/common/Button";
+import { Button } from "../components/common/Button";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ export default function LoginPage() {
   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
-  const validation = (email, password) => {
+  const validation = (email: string, password: string) => {
     if (!emailRegex.test(email)) {
       Alert.alert("Error", "Enter a Valid Email Address");
       return false;
@@ -34,7 +34,13 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("User Logged In!");
+      console.log(
+        `user logged in with email:${email} , password : ${password}`
+      );
+      console.log("Navigating!!!!!!!!");
+      router.replace('/home')
+      console.log("Navigating");
+      
     } catch (error) {
       console.error("Login Error", error.message);
     }
